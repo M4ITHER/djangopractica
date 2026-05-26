@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+<meta charset='UTF-8'>
+<title>Update Incident</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #0f0f1a;
+    color: #cdd6f4;
+}
+
+form{
+    background:#1e1e2e;
+    padding:20px;
+    border-radius:8px;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    background:#11111b;
+    color:#cdd6f4;
+    border:1px solid #45475a;
+    border-radius:4px;
+}
+
+button{
+    background:#89b4fa;
+    color:#1e1e2e;
+    padding:10px 20px;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+a{
+    text-decoration:none;
+}
+
+.back{
+    margin-top:10px;
+    display:inline-block;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>✏️ Update Incident</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <input
+        type="text"
+        name="title"
+        value="{{ incident.title }}"
+        required
+    >
+
+    <textarea
+        name="description"
+        rows="5"
+        required
+    >{{ incident.description }}</textarea>
+
+    <button type="submit">
+        Update Incident
+    </button>
+
+</form>
+
+<a href="/" class="back">
+    <button type="button">
+        Back
+    </button>
+</a>
+
+</body>
+</html>

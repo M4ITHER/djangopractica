@@ -54,19 +54,29 @@
 <body>
     <h1>🔐 Cyber Incident Report System</h1>
     <p>Report and track cybersecurity incidents.</p>
-    <h2>Report a New Incident</h2>
-    <form method='POST'>
-        {% csrf_token %}
-        <input type='text' name='title' placeholder='Incident Title' required>
-        <textarea name='description' rows='4' placeholder='Describe the
-incident...' required></textarea>
-        <button type='submit'>Submit Incident</button>
-    </form>
+    <a href="{% url 'create_incident' %}">
+        <button>
+            Create New Incident
+        </button>
+    </a>
     <h2>Reported Incidents</h2>
     {% for incident in incidents %}
     <div class='incident-card'>
         <strong>{{ incident.title }}</strong>
         <p>{{ incident.description }}</p>
+        <a href="{% url 'update_incident' incident.id %}">
+            <button>Edit</button>
+        </a>
+        <a href="{% url 'delete_incident' incident.id %}">
+            <button>
+                Delete
+            </button>
+        </a>
+        <a href="{% url 'view_incident' incident.id %}">
+            <button>
+                View
+            </button>
+        </a>
     </div>
     {% empty %}
     <p>No incidents reported yet.</p>

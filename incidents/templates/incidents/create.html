@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+<meta charset='UTF-8'>
+<title>Create Incident</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #0f0f1a;
+    color: #cdd6f4;
+}
+
+h1{
+    color:#89b4fa;
+}
+
+form{
+    background:#1e1e2e;
+    padding:20px;
+    border-radius:8px;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    background:#11111b;
+    color:#cdd6f4;
+    border:1px solid #45475a;
+    border-radius:4px;
+}
+
+button{
+    background:#89b4fa;
+    color:#1e1e2e;
+    padding:10px 24px;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+a{
+    text-decoration:none;
+}
+
+.back{
+    margin-top:10px;
+    display:inline-block;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🛡️ Create Cyber Incident</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <input
+        type="text"
+        name="title"
+        placeholder="Incident Title"
+        required
+    >
+
+    <textarea
+        name="description"
+        rows="5"
+        placeholder="Describe the incident..."
+        required
+    ></textarea>
+
+    <button type="submit">
+        Create Incident
+    </button>
+
+</form>
+
+<a href="/" class="back">
+    <button>
+        Back
+    </button>
+</a>
+
+</body>
+</html>

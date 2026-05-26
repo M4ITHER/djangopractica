@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+<meta charset='UTF-8'>
+<title>View Incident</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    max-width:800px;
+    margin:0 auto;
+    padding:20px;
+    background:#0f0f1a;
+    color:#cdd6f4;
+}
+
+.card{
+    background:#1e1e2e;
+    padding:20px;
+    border-radius:8px;
+}
+
+button{
+    background:#89b4fa;
+    color:#1e1e2e;
+    padding:10px 20px;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+a{
+    text-decoration:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>{{ incident.title }}</h1>
+
+    <p>{{ incident.description }}</p>
+
+    <a href="/">
+        <button>
+            Back
+        </button>
+    </a>
+
+</div>
+
+</body>
+</html>

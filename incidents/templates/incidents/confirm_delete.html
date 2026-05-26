@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+<meta charset='UTF-8'>
+<title>Delete Incident</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#0f0f1a;
+    color:#cdd6f4;
+    padding:40px;
+}
+
+.card{
+    background:#1e1e2e;
+    padding:20px;
+    border-radius:8px;
+    max-width:600px;
+    margin:auto;
+}
+
+button{
+    background:#f38ba8;
+    color:#11111b;
+    padding:10px 20px;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+a{
+    text-decoration:none;
+}
+
+.cancel{
+    background:#89b4fa;
+    margin-left:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>Delete Incident</h1>
+
+    <p>
+        Are you sure you want to delete:
+    </p>
+
+    <h2>{{ incident.title }}</h2>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <button type="submit">
+            Delete
+        </button>
+
+        <a href="/">
+            <button
+                type="button"
+                class="cancel">
+                Cancel
+            </button>
+        </a>
+
+    </form>
+
+</div>
+
+</body>
+</html>

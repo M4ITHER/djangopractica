@@ -16,8 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from incidents.views import update_incident, delete_incident, view_incident, create_incident
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('incidents.urls')),
+    path('incidents/<int:id>/update/', update_incident, name='update_incident'),
+    path('incidents/<int:id>/delete/', delete_incident, name='delete_incident'),
+    path('incidents/<int:id>/', view_incident, name='view_incident'),
+    path('incidents/create/', create_incident, name='create_incident'),
 ]
