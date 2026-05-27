@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import IncidentForm
 from accounts.models import UserProfile
 from django.http import HttpResponseForbidden
+from django.contrib import messages
 
 # Create your views here.
 
@@ -38,6 +39,10 @@ def update_incident(request, id):
         incident.title = request.POST['title']
         incident.description = request.POST['description']
         incident.save()
+        messages.success(
+            request,
+            'Incident updated successfully.'
+        )
 
         return redirect('incidents:home')
 
@@ -55,6 +60,10 @@ def delete_incident(request, id):
 
     if request.method == 'POST':
         incident.delete()
+        messages.success(
+            request,
+            'Incident deleted successfully.'
+        )
         return redirect('incidents:home')
 
     return render(request, 'incidents/confirm_delete.html', {
@@ -78,6 +87,10 @@ def create_incident(request):
         incident = form.save(commit=False)
         incident.reported_by = request.user
         incident.save()
+        messages.success(
+            request, 
+            'Incident created successfully.'
+            )
         return redirect('incidents:home')
 
     return render(request, 'incidents/create.html', {'form': form})

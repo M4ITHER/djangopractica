@@ -6,7 +6,6 @@
     <title>Cyber Incident Report System</title>
 
     <style>
-
         body {
             font-family: Arial, sans-serif;
             max-width: 800px;
@@ -48,7 +47,6 @@
         a {
             text-decoration: none;
         }
-
     </style>
 
 </head>
@@ -66,11 +64,7 @@
             My Dashboard
         </a>
 
-        <form
-            method="POST"
-            action="{% url 'accounts:logout' %}"
-            style="display:inline;"
-        >
+        <form method="POST" action="{% url 'accounts:logout' %}" style="display:inline;">
 
             {% csrf_token %}
 
@@ -123,7 +117,49 @@
     <p>No incidents reported yet.</p>
 
     {% endfor %}
+    <script>
+
+        setTimeout(() => {
+
+            const alertBox = document.getElementById('alert-message')
+
+            if (alertBox) {
+
+                alertBox.style.opacity = '0'
+
+                setTimeout(() => {
+
+                    alertBox.remove()
+
+                }, 500)
+
+            }
+
+        }, 3000)
+
+    </script>
 
 </body>
+{% if messages %}
+
+{% for message in messages %}
+
+<div id="alert-message" style="
+                background:#4ade80;
+                color:#0f172a;
+                padding:12px;
+                border-radius:6px;
+                margin-bottom:15px;
+                font-weight:bold;
+                transition:0.5s;
+            ">
+
+    {{ message }}
+
+</div>
+
+{% endfor %}
+
+{% endif %}
 
 </html>
