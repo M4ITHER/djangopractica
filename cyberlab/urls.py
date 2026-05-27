@@ -25,4 +25,5 @@ urlpatterns = [
     path('incidents/<int:id>/delete/', delete_incident, name='delete_incident'),
     path('incidents/<int:id>/', view_incident, name='view_incident'),
     path('incidents/create/', create_incident, name='create_incident'),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
 ]

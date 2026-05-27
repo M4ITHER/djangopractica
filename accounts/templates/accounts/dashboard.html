@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background:#0f0f1a;
+            color:#cdd6f4;
+            padding:20px;
+            max-width:900px;
+            margin:auto;
+        }
+
+        h1{
+            color:#89b4fa;
+        }
+
+        .card{
+            background:#1e1e2e;
+            padding:15px;
+            margin:10px 0;
+            border-radius:8px;
+            border-left:4px solid #89b4fa;
+        }
+
+        button{
+            background:#89b4fa;
+            color:#11111b;
+            padding:10px 20px;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+            font-weight:bold;
+        }
+
+        a{
+            text-decoration:none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>
+        Welcome {{ request.user.username }}
+    </h1>
+
+    <p>
+        Role:
+        <strong>{{ profile.role }}</strong>
+    </p>
+
+    <a href="{% url 'incidents:home' %}">
+        <button>
+            Back Home
+        </button>
+    </a>
+
+    <h2>
+        My Incidents
+    </h2>
+
+    {% for incident in incidents %}
+
+    <div class="card">
+
+        <h3>{{ incident.title }}</h3>
+
+        <p>{{ incident.description }}</p>
+
+    </div>
+
+    {% empty %}
+
+    <p>
+        No incidents found.
+    </p>
+
+    {% endfor %}
+
+</body>
+
+</html>

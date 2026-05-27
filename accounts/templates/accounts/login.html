@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login | CyberLab</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f0f1a;
+            color: #cdd6f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #1e1e2e;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+        }
+
+        h1 {
+            color: #89b4fa;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            background: #11111b;
+            border: 1px solid #45475a;
+            color: #cdd6f4;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background: #89b4fa;
+            color: #11111b;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .error {
+            color: #f38ba8;
+            margin-top: 10px;
+        }
+
+        p {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        a {
+            color: #89b4fa;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>CyberLab Login</h1>
+
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <label>
+                Username
+                <input
+                    type="text"
+                    name="username"
+                    required>
+            </label>
+
+            <label>
+                Password
+                <input
+                    type="password"
+                    name="password"
+                    required>
+            </label>
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+        <p>
+            No account?
+            <a href="{% url 'accounts:register' %}">
+                Register here
+            </a>
+        </p>
+
+    </div>
+
+</body>
+
+</html>

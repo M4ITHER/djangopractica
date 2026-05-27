@@ -4,7 +4,9 @@
 <head>
     <meta charset='UTF-8'>
     <title>Cyber Incident Report System</title>
+
     <style>
+
         body {
             font-family: Arial, sans-serif;
             max-width: 800px;
@@ -18,24 +20,11 @@
             color: #89b4fa;
         }
 
-        input,
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            background:
-                #1e1e2e;
-            color: #cdd6f4;
-            border: 1px solid #45475a;
-            border-radius: 4px;
-        }
-
         button {
             background: #89b4fa;
             color: #1e1e2e;
             padding: 10px 24px;
-            border:
-                none;
+            border: none;
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
@@ -48,39 +37,93 @@
             margin: 10px 0;
             border-radius: 4px;
         }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
     </style>
+
 </head>
 
 <body>
+
+    <nav>
+
+        <span>
+            Logged in as:
+            <strong>{{ request.user.username }}</strong>
+        </span>
+
+        <a href="{% url 'accounts:dashboard' %}">
+            My Dashboard
+        </a>
+
+        <form
+            method="POST"
+            action="{% url 'accounts:logout' %}"
+            style="display:inline;"
+        >
+
+            {% csrf_token %}
+
+            <button type="submit">
+                Logout
+            </button>
+
+        </form>
+
+    </nav>
+
     <h1>🔐 Cyber Incident Report System</h1>
-    <p>Report and track cybersecurity incidents.</p>
+
+    <p>
+        Report and track cybersecurity incidents.
+    </p>
+
     <a href="{% url 'create_incident' %}">
         <button>
             Create New Incident
         </button>
     </a>
+
     <h2>Reported Incidents</h2>
+
     {% for incident in incidents %}
+
     <div class='incident-card'>
+
         <strong>{{ incident.title }}</strong>
+
         <p>{{ incident.description }}</p>
+
+        {% if request.user.userprofile.role == 'admin' %}
+
         <a href="{% url 'update_incident' incident.id %}">
             <button>Edit</button>
         </a>
+
         <a href="{% url 'delete_incident' incident.id %}">
-            <button>
-                Delete
-            </button>
+            <button>Delete</button>
         </a>
-        <a href="{% url 'view_incident' incident.id %}">
-            <button>
-                View
-            </button>
-        </a>
+
+        {% endif %}
+
     </div>
+
     {% empty %}
+
     <p>No incidents reported yet.</p>
+
     {% endfor %}
+
 </body>
 
 </html>
